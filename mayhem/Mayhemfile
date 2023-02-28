@@ -1,0 +1,9 @@
+project: yamllint
+target: fuzz-linter
+testsuite:
+    - file://mayhem/testsuite
+
+cmds:
+  - cmd: /src/mayhem/fuzz_linter.py
+    libfuzzer: true
+    timeout: 15
