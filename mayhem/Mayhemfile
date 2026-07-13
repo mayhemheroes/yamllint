@@ -1,0 +1,15 @@
+# Mayhem target: yamllint YAML linter (Atheris/libFuzzer harness).
+# The cmd binary is the compiled ELF launcher that drives mayhem/fuzz_linter.py; Atheris instruments
+# the yamllint package so the run records coverage (edges). Mirrors the fork's original `fuzz-linter`
+# target (yamllint.linter.run over a fuzzer-generated YAML string, default config).
+project: yamllint
+target: fuzz-linter
+
+cmds:
+  - cmd: /mayhem/fuzz-linter
+    libfuzzer: true
+
+# Seed corpus of representative YAML documents.
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz-linter/testsuite
